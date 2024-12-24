@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 const arg = require('arg');
 const chalk = require('chalk');
-const path = require('path');
+const getConfig = require('../src/config/config-mgr');
+const start = require('../src/commands/start');
 
 try {
     const args = arg({
@@ -10,9 +11,8 @@ try {
     });
 
     if (args['--start']) {
-        const pkg = require(path.join(process.cwd(), 'package.json'));
-        //TODO: do something with the package
-        console.log(chalk.bgCyanBright('Starting the app...'));
+        const config = getConfig();
+        start(config);
     }
 } catch (err) {
     console.log(chalk.yellow(err.message));
