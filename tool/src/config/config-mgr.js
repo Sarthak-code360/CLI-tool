@@ -10,7 +10,7 @@ module.exports = function getConfig() {
     const result = configLoader.search(process.cwd());
     if (!result) {
         logger.warning('Could not find configuration, using default');
-        return { port: 1234 };
+        return { port: 4321 };
     } else {
         const isValid = ajv.validate(schema, result.config);
         if (!isValid) {
